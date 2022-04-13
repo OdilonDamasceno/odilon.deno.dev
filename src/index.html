@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles/index.css" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Odilon Damasceno</title>
+</head>
+
+<body>
+  <div class="topnav">
+    <div class="workspace">
+      <i class="fa-solid fa-house"></i>
+    </div>
+    <div class="workspace">
+      <i class="fa-solid fa-house"></i>
+    </div>
+    <div class="workspace">
+      <i class="fa-solid fa-user"></i>
+    </div>
+  </div>
+  <section class="work-1">
+    <div id="term" class="window term">
+      <div id="inner-content-1">
+        <div id="io-form-1">
+          <b id="pwd">~</b>
+          <br />
+          <form onsubmit="return submitCommand(event,1)" id="subm-1" action="" autocomplete="off">
+            <div class="input_area">
+              <i id="gt" class="fa-solid fa-angle-right"></i>
+              <input type="text" name="command" id="user_input-1" value="" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="window term">
+      <div id="inner-content-2">
+        <div id="io-form-2">
+          <b id="pwd">~</b>
+          <br />
+          <form onsubmit="return submitCommand(event,2)" id="subm-2" action="" autocomplete="off">
+            <div class="input_area">
+              <i id="gt" class="fa-solid fa-angle-right"></i>
+              <input type="text" name="command" id="user_input-1" value="" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+
+    function submitCommand(event, term) {
+      event.preventDefault();
+      // var termNumber = event.target.id.split("-").slice(-1)[0];
+
+      var termWidget = document.getElementById(`inner-content-${term}`);
+
+      var currentId = document.getElementById(`inner-content-${term}`).childElementCount
+
+      var currentForm = document.getElementById(`io-form-${currentId}`)
+        .querySelector(`#user_input-${currentId}`);
+
+      var command = currentForm.value;
+      currentForm.disabled = true;
+      currentForm.placeholder = command;
+
+
+
+      termWidget.innerHTML += `
+      <div id="io-form-${currentId + 1}">
+        ${execCommand(command, term)}
+        <b id="pwd">~</b>
+        <br />
+        <form onsubmit="return submitCommand(event,${term})" id="subm-1" action="" autocomplete="off">
+          <div class="input_area">
+            <i id="gt" class="fa-solid fa-angle-right"></i>
+            <input type="text" name="command" id="user_input-${currentId + 1}" value="" />
+          </div>
+        </form>
+      </div>
+      `;
+      // `<div id="io-form-${currentId + 1}">${document.getElementById(`io-form-${currentId}`).innerHTML}</div>`
+
+      document.getElementById(`io-form-${currentId + 1}`)
+        .querySelector(`#user_input-${currentId + 1}`).focus()
+
+      return false;
+
+    }
+
+    function execCommand(command, term) {
+
+      if (command === "help") {
+        return `<div style="white-space: pre;">Odilon Terminal :D
+
+COMMANDS:
+
+help      show this message
+
+VERSION: 
+v0.0.0.alpha-42
+</div>
+        `
+      } else if (command == "ofetch") {
+        return `<div>
+  <pre style="font-family: 'Courier New', monospace; white-space: pre-wrap;">
+       /\\         odilon@ideapad
+      /  \\        os     Arch Linux
+     /\\   \\       host   81FD Lenovo ideapad 330-15IKB
+    /      \\      kernel 5.17.1-arch1-1
+   /   ,,   \\     uptime 14m
+  /   |  |  -\\    pkgs   1021
+ /_-''    ''-_\\   memory 1766M / 11879M
+
+  </pre>
+</div>
+        `
+      } else if (command === "clear") {
+        return "<div>Feature not implemented D:<div/>";
+      } else {
+        return "";
+      }
+    }
+
+  </script>
+</body>
+
+
+</html>

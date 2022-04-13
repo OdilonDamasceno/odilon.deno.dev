@@ -1,20 +1,18 @@
-import { Application, render, Router, Status } from "./deps.ts";
-import App from "./src/app.jsx";
-import NotFount from "./src/404/404.jsx";
+/** @jsx h */
+import { Application, Router, Status } from "./deps.ts";
 
 const app = new Application();
 const router = new Router();
 
 router.get("/", (context) => {
-  context.response.type = "html";
-  context.response.body = render(App(), {}, { pretty: true });
+  context.response.type = "text/html;charset=utf-8";
+  context.response.body = Deno.readTextFileSync("./src/index.html");
 });
 
 function notFound(context) {
   context.response.status = Status.NotFound;
-  context.response.body = render(NotFount(), {}, { pretty: true });
+  context.response.body = Deno.readTextFileSync("./src/404.html");
 }
-
 
 // Middleware to get styles
 router.get("/favicon.ico", async (context) => {
@@ -46,5 +44,9 @@ router.get("/public/:file", async (context) => {
 app.use(router.routes());
 app.use(notFound);
 
+app.addEventListener(
+  "listen",
+  () => console.log("Listen at https://localhost:8000"),
+);
 
 await app.listen({ port: 8000 });

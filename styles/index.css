@@ -1,0 +1,115 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,body{
+  font-family: 'Ubuntu', sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-image: url("/public/wallpaper.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+[class^="work-"] {
+  flex: 1;
+  padding: 0vh 2vh 2vh 2vh;
+  display: flex;
+  gap: 2.5vh;
+  flex-direction: row;
+  height: 1px;
+}
+
+.window{
+  color: #c0bfc1;
+  border-radius: 10px;
+  
+  flex: 1;
+}
+
+.term {
+  background-color: #040208;
+  padding: 15px;
+}
+
+[id^="user_input-"]  {
+  width: 100%;
+  background: none;
+  font-size: medium;
+  border: none;
+  color: aliceblue;
+  margin-left: 18px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+
+[id^="io-form-"] {
+  background-color: #040208;
+}
+
+[id^="inner-content-"]{
+  height: 100%;
+  overflow: auto;
+}
+[id^="inner-content-"]::-webkit-scrollbar{
+  display: none;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+.input_area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#pwd{
+  color: #EC1DDD;
+}
+
+#gt{
+  color: #9C27A1;
+  position: relative;
+}
+
+.topnav {
+  position: relative;
+  top: 0;
+  height: 60px;
+  width: 100%; 
+  display: flex;
+}
+
+.workspace {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  margin: 2vh 0vh 2vh 2vh;
+  padding: 1vh;
+  border-radius: 25%;
+  background-color: aliceblue;
+  color: rgba(137, 43, 226, 0.445);
+}
+
+.workspace i {
+  text-align:center;
+  width: 100%;
+  height: 100%;
+}
+
+.workspace:hover {  
+  color: blueviolet;
+  cursor: pointer;
+  
+}

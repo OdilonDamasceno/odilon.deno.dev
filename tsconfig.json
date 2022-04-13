@@ -1,5 +1,5 @@
 {
   "compilerOptions": {
-    "jsxFactory": "h"
+    "lib": ["dom", "dom.iterable"]
   }
 }
